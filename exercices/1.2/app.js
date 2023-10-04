@@ -8,9 +8,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+let count = 0;
 app.use((req, res, next) => {
-    let count = 0;
-    if(req.method === 'GET')
+    if (req.method === 'GET')
         count++;
     console.log('GET counter :', count);
     next();
