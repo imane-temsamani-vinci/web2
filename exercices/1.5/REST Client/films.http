@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3000
+
+### Create a film
+POST {{baseUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "Nemo",
+    "duration": 100,
+    "budget": 94,
+    "link": "https://www.imdb.com/title/tt0266543/"
+}
+
+### Read all films
+GET {{baseUrl}}/films
+
+### Read film with ID == 1
+GET {{baseUrl}}/films/1
+
+### Read all films with minimum-duration of 140min
+GET {{baseUrl}}/films/?minimum-duration=140
