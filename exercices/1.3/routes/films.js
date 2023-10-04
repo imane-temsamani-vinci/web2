@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     if (minimumFilmDuration === undefined) return res.json(films);
 
     if (typeof minimumFilmDuration !== 'number' || minimumFilmDuration <= 0)
-        return res.status(400);
+        return res.json('Wrong minimum duration');
 
     const filmsReachingMinimumDuration = films.filter(
         (film) => film.duration >= minimumFilmDuration
@@ -70,12 +70,7 @@ router.post('/', (req, res) => {
             : req.body.budget;
 
 
-    if (!title || !link || !duration || !budget) return res.sendStatus(400);
-
-    const existingFilm = films.find(
-        (film) => film.title.toLowerCase() === title.toLowerCase()
-    );
-    if (existingFilm) return res.sendStatus(409);
+    if (!title || !link || !duration || !budget) return res.json('Bad request');
 
     const lastItemIndex = films?.length !== 0 ? films.length - 1 : undefined;
     const lastId = lastItemIndex !== undefined ? films[lastItemIndex]?.id : 0;
